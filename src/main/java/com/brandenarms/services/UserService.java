@@ -1,18 +1,18 @@
 package com.brandenarms.services;
 
-import com.brandenarms.dtos.PasswordChangeDTO;
 import com.brandenarms.dtos.UserResponseDTO;
-import com.brandenarms.models.User;
-import com.brandenarms.models.Book;
+import com.brandenarms.dtos.UserLoginDTO;
+import com.brandenarms.dtos.PasswordChangeDTO;
 import com.brandenarms.repositories.BookRepository;
 import com.brandenarms.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.brandenarms.models.User;
+
 //import org.springframework.security.crypto.bcrypt.BcryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -44,7 +44,7 @@ public class UserService {
     public boolean loginUser(UserLoginDTO dto) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User existingUser = userRepository.findByUserName(dto.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found."));
+                .orElseThrow(() -> new RuntimeException("User.java not found."));
 
         return passwordEncoder.matches(existingUser.getPasswordHash(), dto.getPassword());
     }
@@ -72,7 +72,7 @@ public class UserService {
         User user;
 
         user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User does not exist."));
+                .orElseThrow(() -> new RuntimeException("User.java does not exist."));
 
         userRepository.delete(user);
     }

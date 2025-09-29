@@ -49,8 +49,8 @@ public class User {
         return passwordHash;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPasswordHash(String hash) {
+        this.passwordHash = hash;
     }
 
     public List<Book> getBookList() {

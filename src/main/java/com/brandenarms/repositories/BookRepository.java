@@ -1,7 +1,6 @@
 package com.brandenarms.repositories;
 
 import com.brandenarms.models.Book;
-import com.brandenarms.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

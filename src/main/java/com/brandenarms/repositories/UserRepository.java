@@ -1,20 +1,19 @@
 package com.brandenarms.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.brandenarms.models.User;
 
 import java.util.Optional;
-import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
-import java.util.Optional;
+
 import java.util.List;
+import com.brandenarms.models.User;
 
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
     // Spring Data automatically implements basic CRUD operations:
-    // save(User user)
+    // save(User.java user)
     // findById(Long id)
     // findAll()
     // deleteById(Long id)

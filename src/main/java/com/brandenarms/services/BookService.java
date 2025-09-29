@@ -5,8 +5,9 @@ import com.brandenarms.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.brandenarms.models.Book;
 import com.brandenarms.models.User;
+import com.brandenarms.models.Book;
+
 
 import java.util.List;
 import java.util.Objects;
@@ -42,7 +43,7 @@ public class BookService {
 
     public Book updateBook(Long bookId, Book updatedBook) {
         Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new RuntimeException("Book does not exist."));
+                .orElseThrow(() -> new RuntimeException("Book.java does not exist."));
 
         book.setTitle(updatedBook.getTitle());
         book.setAuthor(updatedBook.getAuthor());
@@ -52,7 +53,7 @@ public class BookService {
 
     public Book updatePartialBook(Long bookId, String title, String author) {
         Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new RuntimeException("Book does not exist."));
+                .orElseThrow(() -> new RuntimeException("Book.java does not exist."));
 
         if (title != null) {
             book.setTitle(title);
@@ -66,7 +67,7 @@ public class BookService {
 
     public void deleteByTitle(String title) {
         if (!bookRepository.existsByTitle(title)) {
-            throw new RuntimeException("Book with that title does not exist.");
+            throw new RuntimeException("Book.java with that title does not exist.");
         }
 
          bookRepository.deleteByTitle(title);
@@ -76,25 +77,24 @@ public class BookService {
         Book book;
 
         book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new RuntimeException("Book does not exist"));
+                .orElseThrow(() -> new RuntimeException("Book.java does not exist"));
 
         bookRepository.delete(book);
     }
 
     public void deleteUserBook(Long userId, Long bookId) {
-        Book book;
-        book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new RuntimeException("Book does not exist."));
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new RuntimeException("Book.java does not exist."));
 
-        User user;
-        user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User does not exist."));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User.java does not exist."));
 
         if (!Objects.equals(user.getId(), userId)) {
             return;
         }
-            bookRepository.delete(book);
+        bookRepository.delete(book);
     }
+
 
     public int deleteBooksByAuthor(Long userId, String author) {
         List<Book> booksByAuthor = bookRepository.findByUserIdAndAuthor(userId, author);
