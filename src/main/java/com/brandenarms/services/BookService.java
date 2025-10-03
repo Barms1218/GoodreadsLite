@@ -1,5 +1,6 @@
 package com.brandenarms.services;
 
+import com.brandenarms.models.ReadingStatus;
 import com.brandenarms.repositories.BookRepository;
 import com.brandenarms.repositories.UserRepository;
 import jakarta.transaction.Transactional;
@@ -74,9 +75,7 @@ public class BookService {
     }
 
     public void deleteBook(Long bookId) {
-        Book book;
-
-        book = bookRepository.findById(bookId)
+        Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new RuntimeException("Book.java does not exist"));
 
         bookRepository.delete(book);
@@ -93,6 +92,15 @@ public class BookService {
             return;
         }
         bookRepository.delete(book);
+    }
+
+    public void changeReadStatus(String title, ReadingStatus status) {
+        Book book = bookRepository.findByTitle(title)
+                .orElseThrow(() -> new RuntimeException("Book with this title does not exist."));
+
+        book.setStatus(status);
+
+        bookRepository.save(book);
     }
 
 

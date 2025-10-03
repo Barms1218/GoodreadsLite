@@ -1,6 +1,8 @@
 package com.brandenarms.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +13,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="username", nullable = false, unique = true)
-    private String username = "";
+    @Email
+    @Column(name="email", nullable = false, unique = true)
+    private String email = "";
 
     @Column(name = "password_hash", nullable = false)
     private String passwordHash = "";
@@ -25,7 +28,7 @@ public class User {
     }
 
     public User(String username, String passwordHash) {
-        this.username = username;
+        this.email = username;
         this.passwordHash = passwordHash;
     }
 
@@ -37,12 +40,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPasswordHash() {

@@ -2,13 +2,6 @@ package com.brandenarms.models;
 
 import jakarta.persistence.*;
 
-enum ReadingStatus {
-    DONE,
-    TO_READ,
-    WANT_TO_READ,
-    DID_NOT_FINISH
-}
-
 @Entity
 @Table(name = "books")
 public class Book {
@@ -24,7 +17,7 @@ public class Book {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = true)
-    private ReadingStatus status;
+    private ReadingStatus status = null;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Column(name = "userId", nullable = false, unique = true)
